@@ -14,6 +14,17 @@ class Tweets
     result && result
   end
 
+  def post_tweet(content)
+    settings = get_db_settings
+    connection = PG.connect(settings)
+    sql = 'INSERT INTO tweets VALUES (3, $1);'
+    connection.exec(sql, [content])
+  rescue PG::Error => e
+    puts e.message
+  ensure
+    connection&.close
+  end
+
   # connection.exec(
   #   'INSERT INTO tweets (content, user_id) VALUES ($1, $2);', ['hogehogehoge', 1]
   # )

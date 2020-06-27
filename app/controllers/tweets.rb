@@ -14,15 +14,30 @@ class TweetsController < Sinatra::Base
     # erb :tweet
   end
 
+  post '/new' do
+    post_tweets
+  end
+
   def get_tweets
     @tweets = 'hogehogefugafuga'
-    p '---------', @tweets
     records = Tweets.new
     tweets_list = records.get_tweets
     tweets_list.each do |tweet|
       p '----------', tweet['content']
     end
     p 'record ----------------', tweets_list
+    erb :tweet
+  end
+
+  def post_tweets
+    @content = params[:tweet]
+    p '--------', @content
+    records = Tweets.new
+    records.post_tweet(@content)
+    tweets_list = records.get_tweets
+    tweets_list.each do |tweet|
+      p '----------', tweet['content']
+    end
     erb :tweet
   end
 end

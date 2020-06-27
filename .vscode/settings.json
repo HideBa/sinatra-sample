@@ -8,5 +8,11 @@
       "rubocop": true
   },
   "ruby.intellisense": "rubyLocate",
-  "editor.formatOnSave": true
+  "editor.formatOnSave": true,
+  "files.associations": {
+    "*.erb": "erb"
+  },
+  "emmet.includeLanguages": {
+    "erb": "html"
+  }
 }
